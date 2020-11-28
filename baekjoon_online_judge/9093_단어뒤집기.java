@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.Stack;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException{
+		
+		/*
+		 * 9093.단어 뒤집기
+		 * 
+		 * 문제 : 문장이 주어졌을 때, 단어를 모두 뒤집어서 출력하는 프로그램을 작성하시오.
+		 *      단, 단어의 순서는 바꿀 수 없다. 단어는 영어 알파벳으로만 이루어져 있다.
+		 * 
+		 * 힌트 : 스택 사용
+		 */
+
+		// 1. 테스트 케이스 몇개로 할지 입력받기
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(bf.readLine()); 
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		// 2. 단어 뒤집기 수행할 문장을 테스트 케이스 갯수만큼 입력받기
+		while(n-- > 0) {
+			String str = bf.readLine() + "\n";
+		
+			// 3. 단어 뒤집기
+			Stack<Character> s = new Stack<Character>();
+			for(char ch : str.toCharArray()) {
+				if(ch == '\n' || ch == ' ') { 
+					// 빈칸 또는 개행문자를 만났을 경우, 그 전까지 스택에 push 했던 글자들 하나씩 pop
+					while(!s.isEmpty()) {
+						bw.write(s.pop()); // 단어 뒤집어서 buffer에 write
+					}
+					bw.write(ch); // 빈칸 또는 개행도 buffer write
+				} else {
+					// 빈칸 또는 개행문자 만나기 전까지 한글자씩 스택에 담기
+					s.push(ch);
+				}
+			}
+		}
+		
+		bw.flush(); // 콜솔창에 결과 보여주기
+		
+	}
+}
