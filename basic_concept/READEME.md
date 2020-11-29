@@ -2,14 +2,15 @@
 
 
 ## 자료구조
-
+</br>
 
 ### 스택
 ***
-* 한쪽 끝에서만 자료를 넣고 뺄 수 있는 자료구조이다.
+* 한쪽 끝에서만 자료를 넣고 뺄 수 있는 자료구조이다. 
 * 마지막으로 넣은 것이 가장 먼저 나오기 때문에 Last In First Out(LIFO) 라고 한다.
 </br>
 > stack 구현 소스코드 java ver.
+
 ````java
 import java.util.*;
 public class Main {
@@ -61,6 +62,7 @@ public class Main {
 ````
 
 </br></br></br>
+
 ### 큐
 ***
 * 한쪽 끝에서만 자료를 넣고 다른 한쪽 끝에서만 뺄 수 있는 자료구조이다.
