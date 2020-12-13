@@ -17,5 +17,56 @@ URL : <https://www.acmicpc.net/problem/17413>
 ### 소스코드
 ***
 ````java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String args[]) throws IOException {
+		
+		// 1. 필요한 변수 선언 및 초기화
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		Stack<Character> s = new Stack<Character>();
+		boolean tag = false; // tag 안의 글자인지 아니인지 판별하기 위한 값
+		
+		// 2. 입력받은 값을 확인하고 단어만 찾아 뒤집기
+		String str = bf.readLine();
+		for(char ch : str.toCharArray()) {
+			if(ch == '<') { 
+				while(!s.isEmpty()) {
+					bw.write(s.pop());
+				}
+				tag = true;
+				bw.write(ch);
+			} else if(ch == '>') {
+				tag = false;
+				bw.write(ch);
+			} else if(tag) {
+				bw.write(ch);
+			} else {
+				if(ch == ' ') {
+					while(!s.isEmpty()) {
+						bw.write(s.pop());
+					}
+					bw.write(ch);
+				} else {
+					s.push(ch);
+				}
+				
+			}
+		}
+		
+		// 3. 마지막에 stack 내 남아있는 단어들 출력
+		while(!s.isEmpty()) {
+			bw.write(s.pop());
+		}
+		bw.write("\n");
+		bw.flush();
+		
+		// 4. 자원반납
+		bf.close();
+		bw.close();
+	}
+}
 
 ````
